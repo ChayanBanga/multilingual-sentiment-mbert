@@ -82,10 +82,10 @@ if st.button("Fetch & Analyze News"):
                 pred, confidence = predict(title)
                 if pred == 1:
                     positive += 1
-                    st.success(f"✅ {title[:80]}... ({confidence:.1f}%)")
+                    st.success(f"✅ {title}... ({confidence:.1f}%)")
                 else:
                     negative += 1
-                    st.error(f"❌ {title[:80]}... ({confidence:.1f}%)")
+                    st.error(f"❌ {title}... ({confidence:.1f}%)")
 
             st.divider()
             total = positive + negative
