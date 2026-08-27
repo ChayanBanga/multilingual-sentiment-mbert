@@ -80,12 +80,33 @@ if st.button("Fetch & Analyze News"):
                 if not title:
                     continue
                 pred, confidence = predict(title)
+
                 if pred == 1:
                     positive += 1
-                    st.success(f"✅ {title}... ({confidence:.1f}%)")
+                    bg, border, icon = "#0f3d24", "#4ade80", "✅"
                 else:
                     negative += 1
-                    st.error(f"❌ {title}... ({confidence:.1f}%)")
+                    bg, border, icon = "#4c0519", "#f87171", "❌"
+
+                st.markdown(
+                    f"""
+                    <div style="
+                        background:{bg};
+                        border:1px solid {border};
+                        border-radius:8px;
+                        padding:0.8rem 1rem;
+                        margin-bottom:0.6rem;
+                        white-space:normal;
+                        word-wrap:break-word;
+                        overflow-wrap:break-word;
+                        line-height:1.5;
+                        color:#e2e8f0;
+                    ">
+                        {icon} {title} &nbsp;<b>({confidence:.1f}%)</b>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
 
             st.divider()
             total = positive + negative
